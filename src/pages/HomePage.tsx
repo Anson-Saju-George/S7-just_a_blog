@@ -15,6 +15,7 @@ const HomePage: React.FC = () => {
           From Overload to Advantage: A Strategic Framework for Navigating the AI
           Revolution
         </h1>
+        <p className="text-sm text-gray-500 mb-8">Last reviewed: July 18, 2026</p>
 
         {/* <h2>: A SUBHEADING GOES HERE */}
         <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mt-10 mb-4">
@@ -146,6 +147,7 @@ const HomePage: React.FC = () => {
           which consistently identify a core set of pragmatic challenges. A 2025
           report by IBM found the five biggest obstacles to AI adoption to be:
         </p>
+        {/* TODO(owner): verify the 2025 survey figures with a current-year survey. */}
         <ul className="list-disc list-inside text-base text-gray-700 leading-relaxed mb-4 pl-4">
           <li>
             Concerns about data accuracy or bias (cited by 45% of respondents).
@@ -521,6 +523,33 @@ const HomePage: React.FC = () => {
           It provides a strategic filter that allows users to engage with the
           AI market on their own terms, with clarity and control.
         </p>
+
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mt-8 mb-3">
+          A 2026 dimension: AI agents and autonomy
+        </h3>
+        <p className="text-base text-gray-700 leading-relaxed mb-4">
+          The four P.A.C.E. stages still provide the spine for adoption, but
+          teams now need an explicit question alongside them: which parts of a
+          workflow should an AI agent be allowed to carry out across multiple
+          steps? The shift from one-off assistance to bounded autonomy changes
+          the unit of design from a prompt to a system of goals, tools,
+          permissions, checkpoints, and owners.
+        </p>
+        <p className="text-base text-gray-700 leading-relaxed mb-4">
+          Treat autonomy as something to earn. Begin with low-risk tasks,
+          define what the agent may read or change, require approval before
+          consequential actions, and log the work so a person can review it.
+          Agent governance belongs in every P.A.C.E. stage: Purpose defines the
+          outcome, Assess tests reliability and access, Centralize keeps tools
+          and context coherent, and Evolve improves the operating rules as the
+          team learns.
+        </p>
+        <ul className="list-disc list-inside text-base text-gray-700 leading-relaxed mb-4 pl-4">
+          <li><strong>Scope:</strong> Give each agent a narrow job and a clear stop condition.</li>
+          <li><strong>Guardrails:</strong> Separate suggestions from actions that need human approval.</li>
+          <li><strong>Traceability:</strong> Keep an audit trail of inputs, decisions, tool calls, and outcomes.</li>
+          <li><strong>Ownership:</strong> Assign a person to review performance and retire unsafe workflows.</li>
+        </ul>
 
         <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mt-8 mb-3">
           3.2 Stage 1: Purpose - Define the Job-to-be-Done

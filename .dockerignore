@@ -1,0 +1,9 @@
+node_modules
+dist
+.git
+a.py
+source_report.txt
+*.log
+.env
+.vscode
+.idea

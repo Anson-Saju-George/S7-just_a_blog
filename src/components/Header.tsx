@@ -27,7 +27,7 @@ const Header: React.FC = () => {
               <NavLink to="/" className={getNavLinkClasses()}>
                 Home
               </NavLink>
-              <NavLink to="/aitools" className={getNavLinkClasses()}>
+              <NavLink to="/ai-tools" className={getNavLinkClasses()}>
                 AI Tools
               </NavLink>
               <NavLink to="/about" className={getNavLinkClasses()}>
@@ -64,7 +64,7 @@ const Header: React.FC = () => {
             <NavLink to="/" className={getNavLinkClasses(true)} onClick={() => setIsMenuOpen(false)}>
               Home
             </NavLink>
-            <NavLink to="/aitools" className={getNavLinkClasses(true)} onClick={() => setIsMenuOpen(false)}>
+            <NavLink to="/ai-tools" className={getNavLinkClasses(true)} onClick={() => setIsMenuOpen(false)}>
               AI Tools
             </NavLink>
             <NavLink to="/about" className={getNavLinkClasses(true)} onClick={() => setIsMenuOpen(false)}>
