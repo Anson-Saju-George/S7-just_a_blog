@@ -1,6 +1,10 @@
 :8000 {
     encode gzip
-    root * /srv
-    try_files {path} /index.html
-    file_server
+    respond / 404
+
+    handle_path /just-a-blog/* {
+        root * /srv
+        try_files {path} /index.html
+        file_server
+    }
 }
