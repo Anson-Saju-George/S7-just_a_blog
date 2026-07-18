@@ -1,0 +1,10 @@
+:8000 {
+    encode gzip
+    redir / /just-a-blog/ 301
+
+    handle_path /just-a-blog/* {
+        root * /srv
+        try_files {path} /index.html
+        file_server
+    }
+}

@@ -8,12 +8,17 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM nginxinc/nginx-unprivileged:alpine
+FROM caddy:2-alpine
 
-USER root
-RUN rm -f /usr/share/nginx/html/index.html
-COPY --from=build /build/dist /usr/share/nginx/html
-COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
-USER nginx
+COPY --from=build /build/dist /srv
+COPY deploy/Caddyfile /etc/caddy/Caddyfile
+
+ENV XDG_DATA_HOME=/tmp/caddy-data \
+    XDG_CONFIG_HOME=/tmp/caddy-config
+RUN addgroup -S caddy \
+    && adduser -S -G caddy caddy \
+    && mkdir -p /tmp/caddy-data /tmp/caddy-config \
+    && chown -R caddy:caddy /tmp/caddy-data /tmp/caddy-config /srv
+USER caddy
 
 EXPOSE 8000
