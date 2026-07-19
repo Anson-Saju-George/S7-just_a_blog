@@ -1,5 +1,5 @@
 <div align="center">
-<img width="1200" height="475" alt="Screenshot" src="images/page-screenshot.png" />
+<img width="1200" height="475" alt="Screenshot" src="docs/archive/images/page-screenshot.png" />
 </div>
 
 # just_a_blog — AI Tools Showcase
@@ -12,8 +12,8 @@ https://aitoolsframwork.de.r.appspot.com/
 
 ## What this repo includes
 
-- Source for a small frontend app (Vite + React / TypeScript).
-- A minimal `app.yaml` for App Engine deployment (used to host the app on GCP).
+- Source for a small frontend app (Vite + React / TypeScript) in `frontend/`.
+- Docker/Caddy deployment files for the static SPA.
 
 ## Quick local run (development)
 
@@ -24,15 +24,16 @@ Prerequisites:
 
 Steps:
 
-1. Install dependencies
+1. Enter the frontend directory and install dependencies
 
 ```powershell
+cd frontend
 npm install
 ```
 
 2. Provide your Gemini API key (used by the app if applicable)
 
-- Option A — create `.env.local` in the repo root and add:
+- Option A — create `.env.local` in `frontend/` and add:
 
 ```
 GEMINI_API_KEY=your_gemini_api_key_here
@@ -53,47 +54,37 @@ npm run dev
 
 Visit the local address printed by Vite (usually http://localhost:5173).
 
+To run the production container locally without colliding with another app on
+host port 8000:
+
+```powershell
+docker compose up --build -d
+```
+
+Open http://localhost:8001/just-a-blog/.
+
 ## Build for production
 
 ```powershell
+cd frontend
 npm run build
 ```
 
 You can preview the production build locally with:
 
 ```powershell
+cd frontend
 npm run preview
 ```
 
-## Deploying to Google Cloud (App Engine)
+## Deployment
 
-This project was deployed to GCP App Engine. Below are the minimal steps used to publish the app. Adjust `YOUR_GCP_PROJECT_ID` and the region to your values.
+The supported deployment artifact is the multi-stage Docker image served by
+Caddy on container port 8000. Dokploy/Traefik should route `/just-a-blog/` to
+that port with path stripping disabled.
 
-Prerequisites:
-
-- Install the Google Cloud SDK (gcloud) and authenticate: `gcloud auth login`
-- Enable App Engine for your project.
-
-Deploy steps (PowerShell):
-
-```powershell
-# Set the project
-gcloud config set project YOUR_GCP_PROJECT_ID
-
-# If you haven't created an App Engine app yet (choose region once):
-gcloud app create --region=us-central
-
-# Deploy using the included app.yaml
-gcloud app deploy app.yaml --project=YOUR_GCP_PROJECT_ID
-
-# Open the deployed site in the browser
-gcloud app browse --project=YOUR_GCP_PROJECT_ID
-```
-
-Notes on secrets / API keys in production:
-
-- For a simple setup you can store env vars in `app.yaml` under `env_variables:`. For better security, use Secret Manager and mount or fetch secrets at runtime.
-- The live site for the semester project is hosted at the URL shown above.
+The former App Engine files are retained in `docs/archive/` for reference and
+are not part of the active build.
 
 ## Academic context / Attribution
 
@@ -103,7 +94,7 @@ If you use this code or adapt it for coursework, please include appropriate attr
 
 ## Troubleshooting
 
-- If deployment fails, check the App Engine logs in Cloud Console and verify your `app.yaml` is correct and any required build steps are present.
+- Legacy App Engine files are retained under `docs/archive/`; the supported deployment path is the Docker/Caddy setup.
 - Ensure required environment variables (like `GEMINI_API_KEY`) are available to the app in production.
 
 ## Contact

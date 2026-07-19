@@ -2,7 +2,7 @@ services:
   blog:
     build: .
     ports:
-      - "8000:8000"
+      - "8001:8000"
     restart: unless-stopped
     mem_limit: 128m
     healthcheck:
